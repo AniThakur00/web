@@ -34,7 +34,9 @@ const port = process.env.PORT;
 
 //Server
 app.listen(port, () => {
-    console.log(`SERVER IS UP AND RUNNING at ${port}`)
+    console.log(`SERVERS IS UP AND RUNNING at ${port}`)
 });
+
+
 
 
