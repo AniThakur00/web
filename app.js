@@ -15,9 +15,9 @@ mongoose.connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useCreateIndex: true
 }).then(() => {
-    console.log("DB CONNECTED")
+    console.log("DB CONNECTED...")
 }).catch(() => {
-    console.log("DB NOT CONNECTED")
+    console.log("DB NOT CONNECTED...")
 });
 
 //Middleware 
