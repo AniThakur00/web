@@ -14,7 +14,6 @@ var userSchema = new mongoose.Schema({
 
     lastname: {
         type: String,
-        required: false,
         maxlength: 30,
         trim: true 
     },
@@ -24,6 +23,11 @@ var userSchema = new mongoose.Schema({
         required: true,
         trim: true,
         unique: true
+    },
+
+    userinfo: {
+        type: String,
+        trim: true
     },
 
     encry_password: {
@@ -53,19 +57,20 @@ userSchema.virtual("password")
         this.encry_password = this.securePassword(password);
     })
     .get(function(){
-        return this._password
+        return this._password;
     })
 
-userSchema.method = {
+userSchema.methods = {
 
     authenticate: function(plaintext) {
         return this.securePassword(plaintext) === this.encry_password;
     },
 
     securePassword: function(plaintext){
-        if (!password) return "";
+        if (!plaintext) return "";
         try {
-            return createHmac('sha256', this.salt)
+            return crypto
+            .createHmac('sha256', this.salt)
             .update(plaintext)
             .digest('hex');
         } catch (err) {
@@ -74,7 +79,7 @@ userSchema.method = {
 
     }
 
-}
+};
 
 
 module.exports = mongoose.model("User" , userSchema)
