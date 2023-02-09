@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const crypto = require("crypto");
 const { v4: uuidv4 } = require('uuid');
 
-
+//user schema
 var userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -50,6 +50,8 @@ var userSchema = new mongoose.Schema({
 
 });
 
+
+//virtual fields 
 userSchema.virtual("password")
     .set(function(password){
         this._password  = password
@@ -60,12 +62,17 @@ userSchema.virtual("password")
         return this._password;
     })
 
+
+//methods 
 userSchema.methods = {
 
+
+    //for authentication
     authenticate: function(plaintext) {
         return this.securePassword(plaintext) === this.encry_password;
     },
 
+    //for encrytpting password
     securePassword: function(plaintext){
         if (!plaintext) return "";
         try {
@@ -81,5 +88,5 @@ userSchema.methods = {
 
 };
 
-
+//export 
 module.exports = mongoose.model("User" , userSchema)

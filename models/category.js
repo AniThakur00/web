@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+
+//category schema
 const categorySchema = new mongoose.Schema({
 
     name: {
@@ -16,4 +18,6 @@ const categorySchema = new mongoose.Schema({
     {timestamps: true}
 );
 
+
+//export
 module.export=mongoose.model("Category", categorySchema)

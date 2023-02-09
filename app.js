@@ -6,7 +6,10 @@ const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+
+//importing router
 const authRoutes = require("./routes/auth")
+const userRoutes = require("./routes/user")
 
 
 //DB connection
@@ -27,6 +30,7 @@ app.use(cors());
 
 //Route
 app.use("/api", authRoutes);
+app.use("/api", userRoutes);
 
 
 //PORT

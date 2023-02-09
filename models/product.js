@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const {ObjectId} = mongoose.Schema;
 
+
+//product schema
 const productSchema = new mongoose.Schema({
 
     name: {
@@ -53,5 +55,5 @@ const productSchema = new mongoose.Schema({
 }, {timestamps: true});
 
 
-
+//exporting product schema
 module.exports = mongoose.model("Product" , productSchema);
