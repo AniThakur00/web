@@ -102,7 +102,7 @@ exports.isSignedIn = expressjwt({
 
 //Middleware for procted routes
 exports.isAuthenticated = (req , res, next) => {
-    var checker = req.profile && req.auth && req.profile._id === req.auth._id;
+    var checker = req.profile && req.auth && req.profile._id == req.auth._id;
     if (!checker){
         res.status(403).json({
             error: "ACCESS DENIED"
